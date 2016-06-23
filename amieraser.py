@@ -11,7 +11,7 @@ parser.add_option('--region', dest="region")
 
 (options, args) = parser.parse_args()
 
-if (options.region != None):
+if (options.region == None):
     aws_region = 'us-east-1'
 else:
     aws_region = options.region
@@ -36,6 +36,7 @@ try:
     for snap_id in snap_ids:
         client.delete_snapshot(SnapshotId=snap_id)
         print("Deleted snapshot %s" % snap_id)
-except botocore.exceptions.ClientError:
-    print("An error occured deleting the image "+options.id)
+except botocore.exceptions.ClientError as e:
+    print("An error occured deleting the image %s:" % options.id)
+    print("\t" + str(e))
     sys.exit(1)
