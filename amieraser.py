@@ -5,9 +5,11 @@ from optparse import OptionParser
 import boto3
 import botocore.exceptions
 
+# Parse command line arguments
 parser = OptionParser()
 parser.add_option('--id', dest="id")
 parser.add_option('--region', dest="region")
+parser.add_option('--profile', dest="profile")
 
 (options, args) = parser.parse_args()
 
@@ -16,11 +18,17 @@ if (options.region == None):
 else:
     aws_region = options.region
 
+if (options.profile == None):
+    aws_profile = 'default'
+else:
+    aws_profile = options.profile
+
 if options.id == None:
     print("Image ID not provided!")
     sys.exit(1)
 
-client = boto3.client('ec2', region_name=aws_region)
+session = boto3.Session(profile_name=aws_profile)
+client = session.client('ec2', region_name=aws_region)
 
 try:
     response = client.describe_images(ImageIds=[options.id])
