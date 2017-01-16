@@ -12,11 +12,12 @@ the AMI is gone.
 
 ## Running the tool
 
-You should be able to just run the amieraser.py script.
+Install this module via pip or by running `python setup.py install`. A command 
+line tool **amieraser** should then be available on your PATH.
 
 Options:
 
-    Usage: amieraser.py [options]
+    Usage: amieraser [options]
 
     Options:
       -h, --help         show this help message and exit
@@ -29,5 +30,5 @@ Options:
 
 ## Future Enhancements
 
-* Packaging as a more proper Python module/program, not just a random script
+* ~Packaging as a more proper Python module/program, not just a random script~
 * Search by AMI name?
