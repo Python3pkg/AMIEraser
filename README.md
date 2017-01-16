@@ -30,5 +30,4 @@ Options:
 
 ## Future Enhancements
 
-* ~Packaging as a more proper Python module/program, not just a random script~
 * Search by AMI name?
