@@ -52,15 +52,15 @@ def delete_ami(image_id):
         
         # Delete the image itself
         client.deregister_image(ImageId=image_id)
-        print(("Deregistered %s" % image_id))
+        print("Deregistered %s" % image_id)
 
         # Delete any associated snapshots
         for snap_id in snap_ids:
             client.delete_snapshot(SnapshotId=snap_id)
-            print(("  - Deleted snapshot %s" % snap_id))
+            print("  - Deleted snapshot %s" % snap_id)
         
         return True
     except botocore.exceptions.ClientError as e:
-        print(("An error occured deleting the image %s:" % image_id))
-        print(("\t" + str(e)))
+        print("An error occured deleting the image %s:" % image_id)
+        print("\t" + str(e))
         return False
